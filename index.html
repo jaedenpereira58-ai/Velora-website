@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELORA — Your choice. Your privacy.</title>
+<style>
+:root{--wine:#672f3b;--wine2:#4a202a;--cream:#f7f1e8;--paper:#fffdf9;--ink:#2d2525;--muted:#786d6a;--line:#e7dcd4;--rose:#ead5d2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+a{color:inherit}
+button,input,select{font:inherit}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(247,241,232,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:Georgia,serif;font-size:27px;letter-spacing:.17em;color:var(--wine);font-weight:600;text-decoration:none}
+.navlinks{display:flex;align-items:center;gap:25px;font-size:14px;color:var(--muted)}
+.navlinks a{text-decoration:none}
+.btn{border:0;background:var(--wine);color:white;padding:12px 18px;border-radius:999px;cursor:pointer;font-weight:650;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:var(--wine2)}
+.btn.secondary{background:transparent;border:1px solid #cdb6b3;color:var(--wine)}
+.btn.secondary:hover{background:#f0e3df}
+.hero{padding:78px 0 72px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:55px}
+.eyebrow{color:var(--wine);font-size:12px;text-transform:uppercase;letter-spacing:.2em;font-weight:750}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.12}
+h1{font-size:clamp(44px,6vw,76px);letter-spacing:-.035em;margin:16px 0 22px;max-width:650px}
+.hero p{font-size:18px;color:var(--muted);max-width:540px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-art{min-height:390px;position:relative;border-radius:180px 180px 22px 22px;background:linear-gradient(145deg,#d9b5ad,#a76c70 52%,#6b3742);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-art:before{content:"";position:absolute;width:260px;height:330px;border-radius:50% 50% 45% 45%;background:linear-gradient(140deg,#f1d8c9,#bb8d83);transform:rotate(-16deg) translate(-12px,12px);opacity:.9}
+.hero-art:after{content:"";position:absolute;width:180px;height:230px;border-radius:50%;border:1px solid rgba(255,255,255,.5);transform:rotate(28deg) translate(48px,-20px)}
+.art-caption{position:absolute;bottom:25px;left:25px;color:#fff9f5;font-family:Georgia,serif;font-size:20px;z-index:2}
+section{padding:66px 0}
+.section-head{max-width:660px;margin-bottom:30px}
+h2{font-size:clamp(32px,4vw,46px);margin:10px 0 14px}
+.section-head p,.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.num{width:36px;height:36px;border-radius:50%;background:var(--rose);color:var(--wine);display:grid;place-items:center;font-weight:700}
+.card h3{font-size:25px;margin:20px 0 10px}
+.notice{background:#efe2dc;border:1px solid #e0c9c1;padding:20px 22px;border-radius:14px;color:#593941;margin-top:22px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px}
+label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
+input,select{width:100%;border:1px solid #d9cbc4;border-radius:10px;padding:12px 13px;background:white;color:var(--ink)}
+input:focus,select:focus{outline:2px solid #c58c91;outline-offset:1px}
+.checkline{display:flex;gap:10px;align-items:flex-start;margin:16px 0;color:var(--muted);font-size:13px}
+.checkline input{width:auto;margin-top:4px}
+.status{margin-top:14px;padding:12px 14px;background:#f5ebe6;border-radius:10px;color:var(--wine);font-size:14px;display:none}
+.status.show{display:block}
+ul.clean{list-style:none;padding:0;margin:18px 0}
+ul.clean li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
+ul.clean li:before{content:"✓";color:var(--wine);font-weight:800}
+.faq{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);max-width:760px}
+footer{background:var(--wine2);color:#f8eeea;padding:38px 0}
+.foot{display:flex;justify-content:space-between;gap:30px;align-items:flex-start}
+footer .brand{color:#fff0e8}
+footer p{font-size:13px;color:#e3cfc9;max-width:650px}
+.small{font-size:12px;color:var(--muted)}
+@media(max-width:760px){.navlinks a:not(.btn){display:none}.hero{grid-template-columns:1fr;padding:48px 0}.hero-art{min-height:290px}.cards,.split{grid-template-columns:1fr}.foot{display:block}section{padding:48px 0}.wrap{width:min(100% - 30px,1120px)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">VELORA</a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#how">How it works</a><a href="#privacy">Privacy</a><a href="#access">Access</a>
+      <a class="btn" href="#access">Explore privately</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Private by design · Demo concept</div>
+      <h1>Your choice.<br>Your privacy.</h1>
+      <p>A considered, discreet space built around adult autonomy, clear boundaries, and informed choice. Start with general information—personal profiles and contact features are not available in this demo.</p>
+      <div class="actions"><a class="btn" href="#how">See how it works <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#privacy">Our privacy principles</a></div>
+      <p class="small">Prototype only. No real users, verification, messages, bookings, or payments.</p>
+    </div>
+    <div class="hero-art" role="img" aria-label="Abstract burgundy and rose artwork">
+      <div class="art-caption">A little more considered.</div>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">A careful first step</div>
+        <h2>Clarity before connection.</h2>
+        <p>The demo shows a simple information-first journey. It does not introduce people or arrange meetings.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="num">01</div><h3>Explore privately</h3><p class="muted">Read general service information and platform standards without browsing individual profiles.</p></article>
+        <article class="card"><div class="num">02</div><h3>Understand eligibility</h3><p class="muted">Review age, consent, privacy, and safety principles before any future access process is considered.</p></article>
+        <article class="card"><div class="num">03</div><h3>Decide for yourself</h3><p class="muted">No pressure, no automatic contact, and no action taken on your behalf in this prototype.</p></article>
+      </div>
+      <div class="notice"><strong>Important:</strong> This is a static concept demo. Legal review of the exact business model and local requirements should happen before any real verification, profile visibility, contact, or in-person activity is enabled.</div>
+    </div>
+  </section>
+
+  <section id="privacy" style="background:#fbf7f1">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">Privacy is a principle</div>
+        <h2>Designed to reveal less.</h2>
+        <p class="muted">A future product should collect only what is necessary, explain why it is needed, and protect it with clear retention and access rules.</p>
+        <ul class="clean">
+          <li>No public legal names in browsing views</li>
+          <li>No real identity documents stored in this demo</li>
+          <li>No tracking pixels or third-party analytics in this file</li>
+          <li>No messaging, booking, or payment workflow</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">Non-negotiables</div>
+        <h3 style="font-size:28px;margin:12px 0">Consent. Safety. Transparency.</h3>
+        <p class="muted">Any real service needs an age-appropriate access policy, meaningful consent, a reporting and response process, secure data handling, and legal advice tailored to the exact service and jurisdiction.</p>
+        <p class="small">Do not submit real names, phone numbers, identity documents, or sensitive personal information through this prototype.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="access">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">Demo interaction</div>
+        <h2>Request access information.</h2>
+        <p class="muted">This form is illustrative only. It does not send or save anything, and it does not verify anyone. Use fictional details if testing.</p>
+      </div>
+      <div class="panel">
+        <form id="demoForm">
+          <label for="role">I am exploring as</label>
+          <select id="role" required><option value="">Choose one</option><option>Adult customer</option><option>Independent provider</option><option>Just researching</option></select>
+          <label for="age">Age range</label>
+          <select id="age" required><option value="">Choose one</option><option>Under 18</option><option>18–20</option><option>21+</option></select>
+          <div class="checkline"><input type="checkbox" id="agree" required><label for="agree" style="margin:0;font-weight:500">I understand this is a non-functional demo and no request will be sent.</label></div>
+          <button class="btn" type="submit" style="width:100%">Preview demo response</button>
+          <div class="status" id="status" role="status"></div>
+        </form>
+        <p class="small">Please do not enter contact details. The form uses only local browser behavior and has no backend.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fbf7f1">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Common questions</div><h2>Before anything goes live.</h2></div>
+      <div class="faq">
+        <details><summary>Does this demo connect customers and providers?</summary><p>No. There are no profiles, introductions, messaging, bookings, payments, or meetup features.</p></details>
+        <details><summary>Can I use real personal information to test it?</summary><p>Please don't. The demo does not need real personal information and is not a secure verification system.</p></details>
+        <details><summary>What should happen before launch?</summary><p>Obtain legal advice on the exact service model and jurisdiction, define age and consent safeguards, create privacy and data-retention policies, and conduct a security review before enabling any real user data or contact functionality.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap foot">
+    <div><a class="brand" href="#top">VELORA</a><p>Your choice. Your privacy.</p></div>
+    <div><p>Concept prototype · Fictional content only · No real-world service enabled</p><p>© 2026 VELORA demo concept</p></div>
+  </div>
+</footer>
+<script>
+document.getElementById('demoForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const age = document.getElementById('age').value;
+  const status = document.getElementById('status');
+  if(age === 'Under 18'){
+    status.textContent = 'This concept is intended for adults only. No access request was sent.';
+  } else {
+    status.textContent = 'Demo complete: nothing was sent, saved, or verified. Real access features remain disabled pending legal and safety review.';
+  }
+  status.classList.add('show');
+});
+</script>
+</body>
+</html>
